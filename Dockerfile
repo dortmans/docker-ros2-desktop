@@ -4,17 +4,38 @@ FROM ros:foxy
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install required packages
-RUN apt-get update
-RUN apt-get install -y build-essential lxqt x11vnc xvfb gazebo11 libgazebo11-dev ros-foxy-gazebo-ros-pkgs
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gazebo11 \
+    libgazebo11-dev \
+    lxqt \
+    ros-foxy-gazebo-ros-pkgs \
+    x11vnc \
+    xvfb
 
-# Keyboard configuration
-COPY ./keyboard /etc/default/keyboard
+# Keyboard settings
+COPY ./rootfs/etc/default/keyboard /etc/default/
 
-# Set working directory
-WORKDIR /
+# Gazebo11 GUI initialization
+RUN mkdir -p /root/.gazebo/
+COPY ./rootfs/root/.gazebo/gui.ini /root/.gazebo/
 
-# Set environmental variable for display
+# LXQt session configuration
+RUN mkdir -p /root/.config/lxqt/
+COPY ./rootfs/root/.config/lxqt/session.conf /root/.config/lxqt/
+
+# Set environmental variable for xvfb
 ENV DISPLAY :20
 
 # Expose port 5920 to view display using VNC Viewer
 EXPOSE 5920
+
+# Set working directory
+WORKDIR /
+
+# Copy entrypoint.sh
+COPY ./rootfs/entrypoint.sh /
+
+# Execute startup script
+ENV VNC_PASSWORD ros
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh $VNC_PASSWORD"]

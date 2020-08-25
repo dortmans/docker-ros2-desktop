@@ -2,8 +2,8 @@ http://wiki.ros.org/docker/Tutorials/GUI
 
 branch name: docker-ros-desktop
 
-docker build -t ros2foxy-gazebo11-lxqt-vnc
-docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy_gazebo11_lxqt
+docker build -t ros2foxy-gazebo11 .
+docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy-gazebo11
 
 https://wiki.lxde.org/en/Ubuntu
 sudo update-alternatives --config x-session-manager
@@ -25,6 +25,11 @@ sudo apt-get install ros-foxy-gazebo-ros-pkgs
 https://wiki.archlinux.org/index.php/LXQt#Use_a_different_window_manager
 ~/.config/lxqt/session.conf
 
-1. docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy_gazebo11_lxqt
+1. docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy-gazebo11
 2. /app/start.sh
 3. /usr/bin/startlxqt
+
+
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
+https://github.com/moby/moby/issues/5509#issuecomment-45243772
