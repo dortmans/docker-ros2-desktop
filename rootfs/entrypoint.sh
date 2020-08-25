@@ -10,4 +10,4 @@ Xvfb :20 -screen 0 1920x1080x16 &
 x11vnc -passwd $1 -display :20 -N -forever &
 
 # Start LXQt
-/usr/bin/startlxqt &
+/usr/bin/startlxqt
