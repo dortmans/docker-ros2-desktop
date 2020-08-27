@@ -1,0 +1,35 @@
+http://wiki.ros.org/docker/Tutorials/GUI
+
+branch name: docker-ros-desktop
+
+docker build -t ros2foxy-gazebo11 .
+docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy-gazebo11
+
+https://wiki.lxde.org/en/Ubuntu
+sudo update-alternatives --config x-session-manager
+/usr/bin/startlxde
+
+https://linuxconfig.org/how-to-install-lxqt-desktop-on-ubuntu-20-04-focal-fossa-linux
+LXQt 0.15.0
+/usr/bin/startlxqt
+
+https://github.com/phusion/baseimage-docker/issues/342
+ENV DEBIAN_FRONTEND noninteractive
+COPY ./keyboard /etc/default/keyboard
+
+https://answers.gazebosim.org//question/25559/what-version-of-gazebo-for-ros-2-foxy-fitzroy-on-ubuntu-2004/
+https://www.ros.org/reps/rep-2000.html#foxy-fitzroy-may-2020-may-2023
+" [d] " Debian packages will be provided for this platform for packages submitted to the rosdistro.
+sudo apt-get install ros-foxy-gazebo-ros-pkgs
+
+https://wiki.archlinux.org/index.php/LXQt#Use_a_different_window_manager
+~/.config/lxqt/session.conf
+
+1. docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy-gazebo11
+2. /app/start.sh
+3. /usr/bin/startlxqt
+
+
+https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
+https://github.com/moby/moby/issues/5509#issuecomment-45243772
