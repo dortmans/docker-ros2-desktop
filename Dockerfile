@@ -1,24 +1,18 @@
-FROM ros:foxy
+FROM ros:latest
 
 # Skip keyboard-configuration prompt for lxqt install
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    gazebo11 \
-    libgazebo11-dev \
+    ~nros-${ROS_DISTRO}-rqt*
     lxqt \
-    ros-foxy-gazebo-ros-pkgs \
+    ros-${ROS_DISTRO}-turtlesim
     x11vnc \
     xvfb
 
 # Keyboard settings
 COPY ./rootfs/etc/default/keyboard /etc/default/
-
-# Gazebo11 GUI initialization
-RUN mkdir -p /root/.gazebo/
-COPY ./rootfs/root/.gazebo/gui.ini /root/.gazebo/
 
 # LXQt session configuration
 RUN mkdir -p /root/.config/lxqt/
