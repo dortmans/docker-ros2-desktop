@@ -2,8 +2,8 @@ http://wiki.ros.org/docker/Tutorials/GUI
 
 branch name: docker-ros-desktop
 
-docker build -t ros2foxy-gazebo11 .
-docker run -it --rm -p 5920:5920 -v /c/app:/app ros2foxy-gazebo11
+docker build -t ros2-master .
+docker run -it --rm -p 5920:5920 -v /c/app:/app ros2-master
 
 https://wiki.lxde.org/en/Ubuntu
 sudo update-alternatives --config x-session-manager
